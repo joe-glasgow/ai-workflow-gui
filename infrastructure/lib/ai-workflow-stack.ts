@@ -152,16 +152,22 @@ export class AIWorkflowStack extends cdk.Stack {
     assetsBucket.grantRead(appRunnerRole);
 
     // App Runner Service for Next.js Application
-    const appRunnerService = new apprunner.CfnService(this, 'AIWorkflowAppRunner', {
-      serviceName: `ai-workflow-${props.stage}`,
+    const appRunnerService = new apprunner.CfnService(this, 'AIWorkflowAppRunnerV2', {
+      serviceName: `ai-workflow-${props.stage}-v2`,
       sourceConfiguration: {
-        autoDeploymentsEnabled: false, // Disable for now until GitHub connection is set up
-        imageRepository: {
-          imageIdentifier: 'public.ecr.aws/aws-containers/hello-app-runner:latest',
-          imageConfiguration: {
-            port: '3000',
+        autoDeploymentsEnabled: true,
+        codeRepository: {
+          repositoryUrl: 'https://github.com/joe-glasgow/ai-workflow-gui',
+          sourceCodeVersion: {
+            type: 'BRANCH',
+            value: props.stage === 'prod' ? 'main' : props.stage === 'staging' ? 'staging' : 'develop',
           },
-          imageRepositoryType: 'ECR_PUBLIC',
+          codeConfiguration: {
+            configurationSource: 'REPOSITORY',
+          },
+        },
+        authenticationConfiguration: {
+          connectionArn: 'arn:aws:apprunner:eu-west-1:191880149699:connection/ai-workflow-github/d3756bc40221447a9ac5773f4b1f4cb7',
         },
       },
       instanceConfiguration: {

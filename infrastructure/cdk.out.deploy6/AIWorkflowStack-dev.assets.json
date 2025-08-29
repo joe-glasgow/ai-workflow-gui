@@ -1,0 +1,36 @@
+{
+  "version": "48.0.0",
+  "files": {
+    "7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200": {
+      "displayName": "AIWorkflowStack-dev/Custom::VpcRestrictDefaultSGCustomResourceProvider Code",
+      "source": {
+        "path": "asset.7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "191880149699-eu-west-1-260c1fd8": {
+          "bucketName": "cdk-hnb659fds-assets-191880149699-eu-west-1",
+          "objectKey": "7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200.zip",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::191880149699:role/cdk-hnb659fds-file-publishing-role-191880149699-eu-west-1"
+        }
+      }
+    },
+    "4d27183aedb6134be245d97f09bf0c47085c5784d2bb5fbe8c5c45b055065a6c": {
+      "displayName": "AIWorkflowStack-dev Template",
+      "source": {
+        "path": "AIWorkflowStack-dev.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "191880149699-eu-west-1-8c9aef42": {
+          "bucketName": "cdk-hnb659fds-assets-191880149699-eu-west-1",
+          "objectKey": "4d27183aedb6134be245d97f09bf0c47085c5784d2bb5fbe8c5c45b055065a6c.json",
+          "region": "eu-west-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::191880149699:role/cdk-hnb659fds-file-publishing-role-191880149699-eu-west-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

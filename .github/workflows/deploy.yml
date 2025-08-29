@@ -1,0 +1,164 @@
+name: Deploy AI Workflow GUI
+
+on:
+  push:
+    branches:
+      - develop    # Auto-deploy to dev environment
+      - staging    # Auto-deploy to staging environment
+      - main       # Auto-deploy to production environment
+  pull_request:
+    branches:
+      - develop
+      - staging
+      - main
+
+env:
+  AWS_REGION: eu-west-1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test -- --passWithNoTests
+
+      - name: Build application
+        run: npm run build
+
+  deploy-dev:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    environment: development
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check AWS credentials
+        run: |
+          if [ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ] || [ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]; then
+            echo "❌ AWS credentials not configured!"
+            echo "Please add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to repository secrets"
+            echo "Go to: Repository Settings → Secrets and Variables → Actions"
+            exit 1
+          fi
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install CDK dependencies
+        run: |
+          cd infrastructure
+          npm ci
+
+      - name: Deploy to Development
+        run: |
+          cd infrastructure
+          npm run build
+          npx cdk deploy --context stage=dev --require-approval never
+
+  deploy-staging:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging' && github.event_name == 'push'
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check AWS credentials
+        run: |
+          if [ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ] || [ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]; then
+            echo "❌ AWS credentials not configured!"
+            echo "Please add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to repository secrets"
+            echo "Go to: Repository Settings → Secrets and Variables → Actions"
+            exit 1
+          fi
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install CDK dependencies
+        run: |
+          cd infrastructure
+          npm ci
+
+      - name: Deploy to Staging
+        run: |
+          cd infrastructure
+          npm run build
+          npx cdk deploy --context stage=staging --require-approval never
+
+  deploy-production:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check AWS credentials
+        run: |
+          if [ -z "${{ secrets.AWS_ACCESS_KEY_ID }}" ] || [ -z "${{ secrets.AWS_SECRET_ACCESS_KEY }}" ]; then
+            echo "❌ AWS credentials not configured!"
+            echo "Please add AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to repository secrets"
+            echo "Go to: Repository Settings → Secrets and Variables → Actions"
+            exit 1
+          fi
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install CDK dependencies
+        run: |
+          cd infrastructure
+          npm ci
+
+      - name: Deploy to Production
+        run: |
+          cd infrastructure
+          npm run build
+          npx cdk deploy --context stage=prod --require-approval never
