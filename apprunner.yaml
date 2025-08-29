@@ -9,7 +9,7 @@ build:
       - npm run build
       - echo "Build completed successfully"
 run:
-  runtime-version: 18
+  runtime-version: nodejs18
   command: npm start
   network:
     port: 8080
