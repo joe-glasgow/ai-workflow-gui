@@ -1,0 +1,1581 @@
+{
+ "Description": "AI Workflow GUI infrastructure for dev environment",
+ "Resources": {
+  "AIWorkflowVPC6401C95E": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/Resource"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet1Subnet8909E510": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet1/Subnet"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet1RouteTable6257952A": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet1/RouteTable"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet1RouteTableAssociationEED52AAC": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "AIWorkflowVPCPublicSubnet1RouteTable6257952A"
+    },
+    "SubnetId": {
+     "Ref": "AIWorkflowVPCPublicSubnet1Subnet8909E510"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet1/RouteTableAssociation"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet1DefaultRoute6E696C02": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "AIWorkflowVPCIGWCC57FD05"
+    },
+    "RouteTableId": {
+     "Ref": "AIWorkflowVPCPublicSubnet1RouteTable6257952A"
+    }
+   },
+   "DependsOn": [
+    "AIWorkflowVPCVPCGWCEB64538"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet1/DefaultRoute"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet2SubnetEAE2F9B8": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-1b",
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Public"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet2/Subnet"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet2RouteTable231D6654": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet2/RouteTable"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet2RouteTableAssociationA16F4396": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "AIWorkflowVPCPublicSubnet2RouteTable231D6654"
+    },
+    "SubnetId": {
+     "Ref": "AIWorkflowVPCPublicSubnet2SubnetEAE2F9B8"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet2/RouteTableAssociation"
+   }
+  },
+  "AIWorkflowVPCPublicSubnet2DefaultRouteB796A5C8": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "AIWorkflowVPCIGWCC57FD05"
+    },
+    "RouteTableId": {
+     "Ref": "AIWorkflowVPCPublicSubnet2RouteTable231D6654"
+    }
+   },
+   "DependsOn": [
+    "AIWorkflowVPCVPCGWCEB64538"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PublicSubnet2/DefaultRoute"
+   }
+  },
+  "AIWorkflowVPCPrivateSubnet1Subnet7E51B640": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-1a",
+    "CidrBlock": "10.0.2.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet1/Subnet"
+   }
+  },
+  "AIWorkflowVPCPrivateSubnet1RouteTable562A70C5": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet1"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet1/RouteTable"
+   }
+  },
+  "AIWorkflowVPCPrivateSubnet1RouteTableAssociation097CFD23": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "AIWorkflowVPCPrivateSubnet1RouteTable562A70C5"
+    },
+    "SubnetId": {
+     "Ref": "AIWorkflowVPCPrivateSubnet1Subnet7E51B640"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet1/RouteTableAssociation"
+   }
+  },
+  "AIWorkflowVPCPrivateSubnet2Subnet0E03885C": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-1b",
+    "CidrBlock": "10.0.3.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "Private"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet2/Subnet"
+   }
+  },
+  "AIWorkflowVPCPrivateSubnet2RouteTable3918105C": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet2"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet2/RouteTable"
+   }
+  },
+  "AIWorkflowVPCPrivateSubnet2RouteTableAssociationB0DECD17": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "AIWorkflowVPCPrivateSubnet2RouteTable3918105C"
+    },
+    "SubnetId": {
+     "Ref": "AIWorkflowVPCPrivateSubnet2Subnet0E03885C"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/PrivateSubnet2/RouteTableAssociation"
+   }
+  },
+  "AIWorkflowVPCIGWCC57FD05": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/IGW"
+   }
+  },
+  "AIWorkflowVPCVPCGWCEB64538": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "AIWorkflowVPCIGWCC57FD05"
+    },
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/VPCGW"
+   }
+  },
+  "AIWorkflowVPCRestrictDefaultSecurityGroupCustomResourceD50EA932": {
+   "Type": "Custom::VpcRestrictDefaultSG",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E",
+      "Arn"
+     ]
+    },
+    "DefaultSecurityGroupId": {
+     "Fn::GetAtt": [
+      "AIWorkflowVPC6401C95E",
+      "DefaultSecurityGroup"
+     ]
+    },
+    "Account": "191880149699"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/RestrictDefaultSecurityGroupCustomResource/Default"
+   }
+  },
+  "AIWorkflowVPCS3Endpoint99D4B430": {
+   "Type": "AWS::EC2::VPCEndpoint",
+   "Properties": {
+    "RouteTableIds": [
+     {
+      "Ref": "AIWorkflowVPCPublicSubnet1RouteTable6257952A"
+     },
+     {
+      "Ref": "AIWorkflowVPCPublicSubnet2RouteTable231D6654"
+     },
+     {
+      "Ref": "AIWorkflowVPCPrivateSubnet1RouteTable562A70C5"
+     },
+     {
+      "Ref": "AIWorkflowVPCPrivateSubnet2RouteTable3918105C"
+     }
+    ],
+    "ServiceName": {
+     "Fn::Join": [
+      "",
+      [
+       "com.amazonaws.",
+       {
+        "Ref": "AWS::Region"
+       },
+       ".s3"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Name",
+      "Value": "AIWorkflowStack-dev/AIWorkflowVPC"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcEndpointType": "Gateway",
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowVPC/S3Endpoint/Resource"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Action": [
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:RevokeSecurityGroupEgress"
+         ],
+         "Resource": [
+          {
+           "Fn::Join": [
+            "",
+            [
+             "arn:aws:ec2:eu-west-1:191880149699:security-group/",
+             {
+              "Fn::GetAtt": [
+               "AIWorkflowVPC6401C95E",
+               "DefaultSecurityGroup"
+              ]
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-191880149699-eu-west-1",
+     "S3Key": "7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
+    "Description": "Lambda function for removing all inbound/outbound rules from the VPC default security group"
+   },
+   "DependsOn": [
+    "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.7fa1e366ee8a9ded01fc355f704cff92bfd179574e6f9cfee800a3541df1b200",
+    "aws:asset:property": "Code"
+   }
+  },
+  "DatabaseSecurityGroup7319C0F6": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for AI Workflow database",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "255.255.255.255/32",
+      "Description": "Disallow all traffic",
+      "FromPort": 252,
+      "IpProtocol": "icmp",
+      "ToPort": 86
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/DatabaseSecurityGroup/Resource"
+   }
+  },
+  "DatabaseSecurityGroupfromAIWorkflowStackdevAppSecurityGroup5BD836935432DE376FA3": {
+   "Type": "AWS::EC2::SecurityGroupIngress",
+   "Properties": {
+    "Description": "Allow App Runner to connect to PostgreSQL",
+    "FromPort": 5432,
+    "GroupId": {
+     "Fn::GetAtt": [
+      "DatabaseSecurityGroup7319C0F6",
+      "GroupId"
+     ]
+    },
+    "IpProtocol": "tcp",
+    "SourceSecurityGroupId": {
+     "Fn::GetAtt": [
+      "AppSecurityGroupC396D536",
+      "GroupId"
+     ]
+    },
+    "ToPort": 5432
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/DatabaseSecurityGroup/from AIWorkflowStackdevAppSecurityGroup5BD83693:5432"
+   }
+  },
+  "AppSecurityGroupC396D536": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Security group for AI Workflow application",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VpcId": {
+     "Ref": "AIWorkflowVPC6401C95E"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AppSecurityGroup/Resource"
+   }
+  },
+  "AIWorkflowDatabaseSubnetGroupCC180BEA": {
+   "Type": "AWS::RDS::DBSubnetGroup",
+   "Properties": {
+    "DBSubnetGroupDescription": "Subnet group for AIWorkflowDatabase database",
+    "SubnetIds": [
+     {
+      "Ref": "AIWorkflowVPCPrivateSubnet1Subnet7E51B640"
+     },
+     {
+      "Ref": "AIWorkflowVPCPrivateSubnet2Subnet0E03885C"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowDatabase/SubnetGroup/Default"
+   }
+  },
+  "AIWorkflowDatabaseMonitoringRoleA759690D": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "monitoring.rds.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowDatabase/MonitoringRole/Resource"
+   }
+  },
+  "AIWorkflowStackdevAIWorkflowDatabaseSecret3F6D5EF63fdaad7efa858a3daf9490cf0a702aeb": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Generated by the CDK for stack: ",
+       {
+        "Ref": "AWS::StackName"
+       }
+      ]
+     ]
+    },
+    "GenerateSecretString": {
+     "ExcludeCharacters": " %+~`#$&*()|[]{}:;<>?!'/@\"\\",
+     "GenerateStringKey": "password",
+     "PasswordLength": 30,
+     "SecretStringTemplate": "{\"username\":\"aiworkflowadmin\"}"
+    },
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowDatabase/Secret/Resource"
+   }
+  },
+  "AIWorkflowDatabaseSecretAttachment1B476F42": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "AIWorkflowStackdevAIWorkflowDatabaseSecret3F6D5EF63fdaad7efa858a3daf9490cf0a702aeb"
+    },
+    "TargetId": {
+     "Ref": "AIWorkflowDatabase5EDFA4F3"
+    },
+    "TargetType": "AWS::RDS::DBInstance"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowDatabase/Secret/Attachment/Resource"
+   }
+  },
+  "AIWorkflowDatabase5EDFA4F3": {
+   "Type": "AWS::RDS::DBInstance",
+   "Properties": {
+    "AllocatedStorage": "100",
+    "BackupRetentionPeriod": 7,
+    "CopyTagsToSnapshot": true,
+    "DBInstanceClass": "db.t3.micro",
+    "DBName": "aiworkflow",
+    "DBSubnetGroupName": {
+     "Ref": "AIWorkflowDatabaseSubnetGroupCC180BEA"
+    },
+    "DeletionProtection": false,
+    "EnablePerformanceInsights": true,
+    "Engine": "postgres",
+    "EngineVersion": "15",
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "AIWorkflowStackdevAIWorkflowDatabaseSecret3F6D5EF63fdaad7efa858a3daf9490cf0a702aeb"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "MasterUsername": "aiworkflowadmin",
+    "MonitoringInterval": 60,
+    "MonitoringRoleArn": {
+     "Fn::GetAtt": [
+      "AIWorkflowDatabaseMonitoringRoleA759690D",
+      "Arn"
+     ]
+    },
+    "PerformanceInsightsRetentionPeriod": 7,
+    "PubliclyAccessible": false,
+    "StorageEncrypted": true,
+    "StorageType": "gp2",
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VPCSecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "DatabaseSecurityGroup7319C0F6",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowDatabase/Resource"
+   }
+  },
+  "AIWorkflowUserPool0215C4D3": {
+   "Type": "AWS::Cognito::UserPool",
+   "Properties": {
+    "AccountRecoverySetting": {
+     "RecoveryMechanisms": [
+      {
+       "Name": "verified_email",
+       "Priority": 1
+      }
+     ]
+    },
+    "AdminCreateUserConfig": {
+     "AllowAdminCreateUserOnly": false
+    },
+    "AutoVerifiedAttributes": [
+     "email"
+    ],
+    "EmailVerificationMessage": "The verification code to your new account is {####}",
+    "EmailVerificationSubject": "Verify your new account",
+    "Policies": {
+     "PasswordPolicy": {
+      "MinimumLength": 8,
+      "RequireLowercase": true,
+      "RequireNumbers": true,
+      "RequireSymbols": true,
+      "RequireUppercase": true
+     }
+    },
+    "SmsVerificationMessage": "The verification code to your new account is {####}",
+    "UserPoolName": "ai-workflow-dev",
+    "UserPoolTags": {
+     "ManagedBy": "CDK",
+     "Project": "AI-Workflow-GUI",
+     "Stage": "dev"
+    },
+    "UsernameAttributes": [
+     "email"
+    ],
+    "VerificationMessageTemplate": {
+     "DefaultEmailOption": "CONFIRM_WITH_CODE",
+     "EmailMessage": "The verification code to your new account is {####}",
+     "EmailSubject": "Verify your new account",
+     "SmsMessage": "The verification code to your new account is {####}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowUserPool/Resource"
+   }
+  },
+  "AIWorkflowUserPoolClient9DDC9647": {
+   "Type": "AWS::Cognito::UserPoolClient",
+   "Properties": {
+    "AllowedOAuthFlows": [
+     "code"
+    ],
+    "AllowedOAuthFlowsUserPoolClient": true,
+    "AllowedOAuthScopes": [
+     "email",
+     "openid",
+     "profile"
+    ],
+    "CallbackURLs": [
+     "https://dev-aiworkflow.example.com/auth/callback"
+    ],
+    "ExplicitAuthFlows": [
+     "ALLOW_USER_PASSWORD_AUTH",
+     "ALLOW_USER_SRP_AUTH",
+     "ALLOW_REFRESH_TOKEN_AUTH"
+    ],
+    "GenerateSecret": false,
+    "LogoutURLs": [
+     "https://dev-aiworkflow.example.com/auth/logout"
+    ],
+    "SupportedIdentityProviders": [
+     "COGNITO"
+    ],
+    "UserPoolId": {
+     "Ref": "AIWorkflowUserPool0215C4D3"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowUserPoolClient/Resource"
+   }
+  },
+  "AIWorkflowAssets9550E42F": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+       }
+      }
+     ]
+    },
+    "BucketName": "ai-workflow-assets-dev-191880149699",
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "Id": "DeleteOldVersions",
+       "NoncurrentVersionExpiration": {
+        "NoncurrentDays": 30
+       },
+       "Status": "Enabled"
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "VersioningConfiguration": {
+     "Status": "Enabled"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowAssets/Resource"
+   }
+  },
+  "AppRunnerInstanceRole96A5A063": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "tasks.apprunner.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonRDSDataFullAccess"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonS3ReadOnlyAccess"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AppRunnerInstanceRole/Resource"
+   }
+  },
+  "AppRunnerInstanceRoleDefaultPolicy35195718": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "AIWorkflowAssets9550E42F",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "AIWorkflowAssets9550E42F",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AppRunnerInstanceRoleDefaultPolicy35195718",
+    "Roles": [
+     {
+      "Ref": "AppRunnerInstanceRole96A5A063"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AppRunnerInstanceRole/DefaultPolicy/Resource"
+   }
+  },
+  "AIWorkflowAppRunner": {
+   "Type": "AWS::AppRunner::Service",
+   "Properties": {
+    "InstanceConfiguration": {
+     "Cpu": "1 vCPU",
+     "InstanceRoleArn": {
+      "Fn::GetAtt": [
+       "AppRunnerInstanceRole96A5A063",
+       "Arn"
+      ]
+     },
+     "Memory": "2 GB"
+    },
+    "ServiceName": "ai-workflow-dev",
+    "SourceConfiguration": {
+     "AutoDeploymentsEnabled": false,
+     "ImageRepository": {
+      "ImageConfiguration": {
+       "Port": "3000"
+      },
+      "ImageIdentifier": "public.ecr.aws/aws-containers/hello-app-runner:latest",
+      "ImageRepositoryType": "ECR_PUBLIC"
+     }
+    },
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/AIWorkflowAppRunner"
+   }
+  },
+  "CostAlertTopic839A4E50": {
+   "Type": "AWS::SNS::Topic",
+   "Properties": {
+    "DisplayName": "AI Workflow Cost Alerts",
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "TopicName": "ai-workflow-cost-alerts-dev"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/CostAlertTopic/Resource"
+   }
+  },
+  "KillSwitchFunctionServiceRole95C4E4A1": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/KillSwitchFunction/ServiceRole/Resource"
+   }
+  },
+  "KillSwitchFunctionServiceRoleDefaultPolicy83EBA7BC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "apprunner:PauseService",
+        "apprunner:ResumeService",
+        "rds:StartDBInstance",
+        "rds:StopDBInstance",
+        "sns:Publish"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "CostAlertTopic839A4E50"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "KillSwitchFunctionServiceRoleDefaultPolicy83EBA7BC",
+    "Roles": [
+     {
+      "Ref": "KillSwitchFunctionServiceRole95C4E4A1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/KillSwitchFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "KillSwitchFunction1CE942D4": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "ZipFile": "\n        const AWS = require('aws-sdk');\n        const apprunner = new AWS.AppRunner();\n        const rds = new AWS.RDS();\n        const sns = new AWS.SNS();\n        \n        exports.handler = async (event) => {\n          console.log('Kill switch triggered:', JSON.stringify(event, null, 2));\n          \n          const actions = [];\n          \n          try {\n            // Pause App Runner service\n            if (process.env.APP_RUNNER_ARN) {\n              actions.push(apprunner.pauseService({\n                ServiceArn: process.env.APP_RUNNER_ARN\n              }).promise());\n            }\n            \n            // Stop RDS instance\n            if (process.env.DB_INSTANCE_ID) {\n              actions.push(rds.stopDBInstance({\n                DBInstanceIdentifier: process.env.DB_INSTANCE_ID\n              }).promise());\n            }\n            \n            await Promise.all(actions);\n            \n            // Send notification\n            await sns.publish({\n              TopicArn: process.env.SNS_TOPIC_ARN,\n              Subject: '🚨 AI Workflow Kill Switch Activated',\n              Message: `AI Workflow services have been automatically shut down due to cost threshold breach.\n              \nCurrent threshold: $${process.env.KILL_SWITCH_THRESHOLD}\nTimestamp: ${new Date().toISOString()}\n\nServices stopped:\n- App Runner service paused\n- RDS database stopped (data preserved)\n\nTo restart services, run:\ncdk deploy --parameters RestartServices=true`\n            }).promise();\n            \n            return {\n              statusCode: 200,\n              body: JSON.stringify({ message: 'Kill switch executed successfully' })\n            };\n          } catch (error) {\n            console.error('Kill switch error:', error);\n            throw error;\n          }\n        };\n      "
+    },
+    "Environment": {
+     "Variables": {
+      "KILL_SWITCH_THRESHOLD": "10",
+      "SNS_TOPIC_ARN": {
+       "Ref": "CostAlertTopic839A4E50"
+      },
+      "DB_INSTANCE_ID": {
+       "Ref": "AIWorkflowDatabase5EDFA4F3"
+      },
+      "APP_RUNNER_ARN": {
+       "Fn::GetAtt": [
+        "AIWorkflowAppRunner",
+        "ServiceArn"
+       ]
+      }
+     }
+    },
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "KillSwitchFunctionServiceRole95C4E4A1",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "Timeout": 300
+   },
+   "DependsOn": [
+    "KillSwitchFunctionServiceRoleDefaultPolicy83EBA7BC",
+    "KillSwitchFunctionServiceRole95C4E4A1"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/KillSwitchFunction/Resource"
+   }
+  },
+  "KillSwitchFunctionLogGroup73F48036": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/lambda/",
+       {
+        "Ref": "KillSwitchFunction1CE942D4"
+       }
+      ]
+     ]
+    },
+    "RetentionInDays": 731,
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/KillSwitchFunction/LogGroup/Resource"
+   }
+  },
+  "KillSwitchFunctionAllowInvokeAIWorkflowStackdevCostAlertTopic1DD4FC00B3DA925C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "KillSwitchFunction1CE942D4",
+      "Arn"
+     ]
+    },
+    "Principal": "sns.amazonaws.com",
+    "SourceArn": {
+     "Ref": "CostAlertTopic839A4E50"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/KillSwitchFunction/AllowInvoke:AIWorkflowStackdevCostAlertTopic1DD4FC00"
+   }
+  },
+  "KillSwitchFunctionCostAlertTopic51DAF69A": {
+   "Type": "AWS::SNS::Subscription",
+   "Properties": {
+    "Endpoint": {
+     "Fn::GetAtt": [
+      "KillSwitchFunction1CE942D4",
+      "Arn"
+     ]
+    },
+    "Protocol": "lambda",
+    "TopicArn": {
+     "Ref": "CostAlertTopic839A4E50"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/KillSwitchFunction/CostAlertTopic/Resource"
+   }
+  },
+  "BillingAlarm3477AF51": {
+   "Type": "AWS::CloudWatch::Alarm",
+   "Properties": {
+    "AlarmActions": [
+     {
+      "Ref": "CostAlertTopic839A4E50"
+     }
+    ],
+    "AlarmDescription": "Billing alarm for AI Workflow dev environment",
+    "AlarmName": "ai-workflow-billing-dev",
+    "ComparisonOperator": "GreaterThanOrEqualToThreshold",
+    "Dimensions": [
+     {
+      "Name": "Currency",
+      "Value": "USD"
+     }
+    ],
+    "EvaluationPeriods": 1,
+    "MetricName": "EstimatedCharges",
+    "Namespace": "AWS/Billing",
+    "Period": 21600,
+    "Statistic": "Maximum",
+    "Tags": [
+     {
+      "Key": "ManagedBy",
+      "Value": "CDK"
+     },
+     {
+      "Key": "Project",
+      "Value": "AI-Workflow-GUI"
+     },
+     {
+      "Key": "Stage",
+      "Value": "dev"
+     }
+    ],
+    "Threshold": 10,
+    "TreatMissingData": "notBreaching"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/BillingAlarm/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64: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"
+   },
+   "Metadata": {
+    "aws:cdk:path": "AIWorkflowStack-dev/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "VPCId": {
+   "Description": "VPC ID for AI Workflow",
+   "Value": {
+    "Ref": "AIWorkflowVPC6401C95E"
+   }
+  },
+  "DatabaseEndpoint": {
+   "Description": "RDS Database Endpoint",
+   "Value": {
+    "Fn::GetAtt": [
+     "AIWorkflowDatabase5EDFA4F3",
+     "Endpoint.Address"
+    ]
+   }
+  },
+  "UserPoolId": {
+   "Description": "Cognito User Pool ID",
+   "Value": {
+    "Ref": "AIWorkflowUserPool0215C4D3"
+   }
+  },
+  "UserPoolClientId": {
+   "Description": "Cognito User Pool Client ID",
+   "Value": {
+    "Ref": "AIWorkflowUserPoolClient9DDC9647"
+   }
+  },
+  "AssetsBucketName": {
+   "Description": "S3 Assets Bucket Name",
+   "Value": {
+    "Ref": "AIWorkflowAssets9550E42F"
+   }
+  },
+  "KillSwitchFunctionArn": {
+   "Description": "Kill Switch Lambda Function ARN",
+   "Value": {
+    "Fn::GetAtt": [
+     "KillSwitchFunction1CE942D4",
+     "Arn"
+    ]
+   }
+  },
+  "AppRunnerServiceUrl": {
+   "Description": "App Runner Service URL",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "AIWorkflowAppRunner",
+        "ServiceUrl"
+       ]
+      }
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
